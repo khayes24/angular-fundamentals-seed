@@ -5,10 +5,16 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
-      Hello!
+      {{title}}
     </div>
   `
 })
 export class AppComponent {
+  title: string;
+  numberOne: number = 1;
+  numberTwo: number = 2;  
+  constructor(){
+    this.title = 'Ultimate Angular';
+  }
 
 }
