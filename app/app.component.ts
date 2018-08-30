@@ -20,7 +20,10 @@ interface Passenger{
         class="status"
         [class.checked-in]="passenger.checkedIn"></span>
         {{i}}: {{passenger.fullname}}
-        <p>{{passenger | json}}</p><!--Json Pipe-->
+        <p>{{passenger | json}}</p><!--Json Pipe converts object to json-->
+        <div class="date">
+          Check in: {{ passenger.checkInDate }}
+        </div>
       </li>
       </ul>
     </div>
