@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
 
+interface Child {
+  name: string,
+  age: number
+}
+
 interface Passenger{
   id: number,
   fullname: string,
   checkedIn: boolean,
-  checkInDate?: number
+  checkInDate?: number,//? means optional part of interface
+  children?: Child[]
 
 }
 
@@ -24,6 +30,9 @@ interface Passenger{
         <div class="date">
           Check in: {{ passenger.checkInDate }}
         </div>
+        <div class="children">
+          Children : {{passenger.children?.length || 0}} <!--Safe navigation checks ifp roperty exists if not it will move on to next item and prevent error -->
+        </div>
       </li>
       </ul>
     </div>
@@ -35,13 +44,15 @@ export class AppComponent {
     id: 1,
     fullname: 'Kam',
     checkedIn: true,
-    checkInDate: 7181995
+    checkInDate: 7181995,
+    children: [{name: 'Yoboi', age:12}, {name: 'Chloe', age:4}]
     },
     {
     id: 2,
     fullname: 'Kam2',
     checkedIn: false,
-    checkInDate: 201823
+    checkInDate: 201823,
+    children: null
   }];
 
   constructor(){
