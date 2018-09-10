@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { Passenger} from '../../models/passenger.interface';
 
 @Component({
   selector: 'passenger-count',
   template:  `
     <div>
-      Count Component!
+      <h3>Airline Passengers!!</h3>
+      <div>
+        Total Passengers: {{items.length}}
+      </div>
     </div>
   `
 })
 
 export class PassengerCountComponent{
+  @Input()
+  items: Passenger[];
   constructor(){
 
   }
