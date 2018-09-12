@@ -11,23 +11,12 @@ import { Passenger } from '../../models/passenger.interface';
         [items]="passengers"
       >
       </passenger-count>
-      <passenger-detail></passenger-detail>
-      <h3>Airline Passengers</h3>
-      <ul>
-      <li *ngFor="let passenger of passengers; let i =index;">
-      <span
-        class="status"
-        [class.checked-in]="passenger.checkedIn"></span>
-        {{i}}: {{passenger.fullname}}
-        <p>{{passenger | json}}</p><!--Json Pipe converts object to json-->
-        <div class="date">
-          Check in: {{ passenger.checkInDate }}
-        </div>
-        <div class="children">
-          Children : {{passenger.children?.length || 0}} <!--Safe navigation checks ifp roperty exists if not it will move on to next item and prevent error -->
-        </div>
-      </li>
-      </ul>
+      <passenger-detail
+        *ngFor="let passenger of passengers;"
+        [detail]="passenger"
+      >
+      </passenger-detail>
+    
     </div>
   `
 })
