@@ -1,22 +1,35 @@
+
+import { Injectable } from '@angular/core';
+
+import { Http, Response } from '@angular/http';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
 import { Passenger } from './models/passenger.interface';
 
+const PASSENGER_API: string = '/api/passengers';
+//Good practice to use @Injectable even if nothing is being injected
+//Allows us to use dependecy injection in other classes
+@Injectable()
 export class PassengerDashboardService{
-  constructor() {}
+  constructor(private http: Http) {}
 
-  getPassengers(): Passenger[]{
-    return [{
-         id: 1,
-         fullname: 'Kam',
-         checkedIn: true,
-         checkInDate: 7181995,
-         children: [{name: 'Yoboi', age:12}, {name: 'Chloe', age:4}]
-         },
-         {
-         id: 2,
-         fullname: 'Kam2',
-         checkedIn: false,
-         checkInDate: 201823,
-         children: null
-      }];
+  getPassengers(): Observable<Passenger[]>{
+    return this.http
+    .get(PASSENGER_API)
+    .map((response: Response) => response.json());
+  }
+
+  updatePassenger(passenger: Passenger): Observable<Passenger>{
+    return this.http
+    .put(`${PASSENGER_API}/${passenger.id}`, passenger)
+    .map((response: Response) => response.json());
+  }
+
+  removePassenger(passenger: Passenger): Observable<Passenger>{
+    return this.http
+    .delete(`${PASSENGER_API}/${passenger.id}`)
+    .map((response: Response) => response.json());
   }
 }
