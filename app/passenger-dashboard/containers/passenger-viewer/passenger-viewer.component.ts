@@ -12,7 +12,9 @@ import { Passenger } from '../../models/passenger.interface';
   template:`
 
     <div>
-    {{passenger | json}}
+    <passenger-form
+      [detail]="passenger">
+    </passenger-form>
     </div>
 
   `

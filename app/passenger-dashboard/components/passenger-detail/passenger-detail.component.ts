@@ -22,9 +22,6 @@ import { Passenger} from '../../models/passenger.interface'
       <div class="date">
         Check in: {{ detail.checkInDate }}
       </div>
-      <div class="children">
-        Children : {{detail.children?.length || 0}} <!--Safe navigation checks ifp roperty exists if not it will move on to next item and prevent error -->
-      </div>
       <button (click)="toggleEdit()">
         {{editing ? 'Done' : 'Edit'}}
       </button>
