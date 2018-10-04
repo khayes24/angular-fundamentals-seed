@@ -28,6 +28,9 @@ import { Passenger} from '../../models/passenger.interface'
       <button (click)="onRemove()">
         Remove
       </button>
+      <button (click)="goToPassenger()">
+        View
+      </button>
     </div>
   `
 })
@@ -37,14 +40,18 @@ export class PassengerDetailComponent{
   detail: Passenger;
 
   @Output()
-  edit: EventEmitter<any> = new EventEmitter();
+  edit: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
   //@Outputis called from angular core
   //Output and Event Emitter are used for getting data out of component
   @Output()
   //Event Emitter can be different types
   //Allows us to fire a custom event
-  remove: EventEmitter<any> = new EventEmitter();
+  remove: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+
+  @Output()
+  view: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+
 
   editing: boolean = false;
 
@@ -67,6 +74,10 @@ export class PassengerDetailComponent{
   onRemove(){
   //Emit the entire detail
     this.remove.emit(this.detail);
+  }
+
+  goToPassenger() {
+    this.view.emit(this.detail);
   }
 
 }
